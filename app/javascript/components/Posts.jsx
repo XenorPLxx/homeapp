@@ -1,11 +1,27 @@
 var React = require("react")
+import Post from './Post.jsx'
 class Posts extends React.Component {
+  state = {
+    posts: this.props.data,
+  }
+  static getDefaultProps = {
+    posts: [],
+  }
   render() {
-   return (<div id="one-time-click-link">
-     <a href="javascript:void(0)">
-       Click me
-     </a>
-   </div>);
+   return (
+     <div className="posts">
+        {this.state.posts.map((post) => {
+          return React.createElement(
+            Post,
+            {
+              key: post.id,
+              post: post,
+            },
+            null
+          )
+        })}
+     </div>
+   );
   }
 }
 export default Posts;
